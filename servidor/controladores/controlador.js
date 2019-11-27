@@ -8,48 +8,48 @@ function validacion (nombre, genero, director, actor) {
 
     var sql =  ` insert into preguntas (nombre) value ('${nombre}') `; //solo nombre
 
-    if (genero == undefined) {
+    if (genero == undefined || genero == 0) {
         sql = ` insert into preguntas (nombre) value ('${nombre}') `; 
         
-        if (director == undefined) {
+        if (director == undefined || director == 0) {
 
-            if (actor == undefined){
+            if (actor == undefined || actor == 0){
 
             } else {
-                sql = ` insert into preguntas (nombre, actor) value ('${nombre}', '${actor}') `;
+                sql = ` insert into preguntas (nombre, actorId) value ('${nombre}', '${actor}') `;
             }
 
         } else {
 
-            sql = ` insert into preguntas (nombre, director) value ('${nombre}', '${director}') `;
+            sql = ` insert into preguntas (nombre, directorId) value ('${nombre}', '${director}') `;
 
-                if (actor == undefined){
+                if (actor == undefined || actor == 0){
 
                 } else {
-                    sql = ` insert into preguntas (nombre, actor , director) value ('${nombre}', '${actor}' , '${director}) `;
+                    sql = ` insert into preguntas (nombre, actorId , directorId) value ('${nombre}', '${actor}' , '${director}) `;
                 }
         }
 
     } else {
 
-        sql = ` insert into preguntas (nombre, genero) value ('${nombre}', '${genero}') `;
+        sql = ` insert into preguntas (nombre, generoId) value ('${nombre}', '${genero}') `;
 
-        if (director == undefined) {
+        if (director == undefined || director == 0) {
 
-            if (actor == undefined){
+            if (actor == undefined || actor == 0){
 
             } else {
-                sql = ` insert into preguntas (nombre, genero, actor) value ('${nombre}', '${genero}' ,'${actor}') `;
+                sql = ` insert into preguntas (nombre, generoId, actorId) value ('${nombre}', '${genero}' ,'${actor}') `;
             }
 
         } else {
 
-            sql = ` insert into preguntas (nombre, genero, director) value ('${nombre}', '${genero}', '${director}') `;
+            sql = ` insert into preguntas (nombre, generoId, directorId) value ('${nombre}', '${genero}', '${director}') `;
 
-                if (actor == undefined){
+                if (actor == undefined || actor == 0){
 
                 } else {
-                    sql = ` insert into preguntas (nombre, genero, director, actor) value ('${nombre}', '${genero}' ,'${director}', '${actor}') `;
+                    sql = ` insert into preguntas (nombre, generoId, directorId, actorId) value ('${nombre}', '${genero}' ,'${director}', '${actor}') `;
                 }
         }
             
@@ -69,7 +69,9 @@ function validarObtener (genero, director, actor){
         actor: false
     }
 
-    if ((genero != undefined) && genero != 0){
+    console.log({genero,director,actor}, "validarObtener")
+
+    if (genero != undefined && genero != 0){
         validar.genero = genero;
     }
 
@@ -198,7 +200,7 @@ function obtenerOpciones (req, res) {
         competencia = resultado[0]
         console.log(competencia, "competencia dentro del callback")
 
-        var objetoValidacion = validarObtener(competencia.genero, competencia.director, competencia.actor)
+        var objetoValidacion = validarObtener(competencia.generoId, competencia.directorId, competencia.actorId)
 
         console.log(objetoValidacion, "<========== objeto validacion")
 
@@ -295,7 +297,7 @@ function obtenerResultados (req, res) {
     poster, trama, genero_string, preguntas.nombre, pelicula.id as peli_id, preguntas.id as pregunta, count(votos.id) as votos from pelicula 
     join votos on pelicula.id = pelicula_id join preguntas on preguntas.id = pregunta_id where preguntas.id = ${idPregunta}
     group by pelicula.titulo, anio, duracion, genero_id, director, fecha_lanzamiento, puntuacion, 
-    poster, trama, genero_string, preguntas.nombre, peli_id order by votos desc `;
+    poster, trama, genero_string, preguntas.nombre, peli_id order by votos desc limit 3`;
 
     console.log(sql, "<=== SQL RESULTADOS")
     con.query(sql, function(error, resultado, fields){
@@ -304,9 +306,13 @@ function obtenerResultados (req, res) {
             return res.status(404).send("Hubo un error en la consulta.");
         }
 
-        respuesta = {
+        var respuesta = {};
+
+        if (resultado.length > 0){
+            respuesta = {
             resultados: resultado,
             competencia: resultado[0].nombre
+            }
         }
         
         res.send(JSON.stringify(respuesta));
