@@ -1,5 +1,5 @@
 // Esta es la ip y puerto en que necesitamos que esté el backend disponible
-var server = 'http://localhost:8080'; // yo : 'http://localhost:8080'  original: 'http://0.0.0.0:8080'
+var server = 'http://localhost:3000'; //process.env.SERVER; // yo : 'http://localhost:8080'  original: 'http://0.0.0.0:8080'
 
 
 function CompetenciasController () {
@@ -13,7 +13,7 @@ function CompetenciasController () {
 		$.getJSON(server+"/competencias", function (data) {
 				// Se carga la información obtenida en el DOM
 				self.cargarCompetencias(data);
-				console.log(data) //agregado
+				// console.log(data) //agregado
 		 });
 	},
 
@@ -23,7 +23,7 @@ function CompetenciasController () {
 		// Oculto la plantilla
 		$(".competenciaPlantilla").hide();
 		// Se recorren iterativamente, uno a uno, los resultados de competencias
-		var cantidad = data.length; console.log(cantidad, "cantidad")
+		var cantidad = data.length; //console.log(cantidad, "cantidad")
 		var idColor = 1;
 		var idColorCrece = true;
 		for (i = 0; i < cantidad; i++) {

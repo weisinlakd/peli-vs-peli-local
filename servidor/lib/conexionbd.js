@@ -1,10 +1,12 @@
 var mysql = require('mysql');
+require('../config/config');
+
 
 var connection = mysql.createConnection({
-  host: 'localhost',
-  port: '3306',
-  user: 'root',
-  password: 'obcc-40b',
+  host: process.env.HOST,
+  port: process.env.PORT_SQL,
+  user: process.env.USER,
+  password: process.env.PASSWORD,
   database:  'competencias'
 });
 
@@ -16,6 +18,7 @@ connection.connect(function(err) {
  
   console.log('connected as id ' + connection.threadId);
 });
+
 
 module.exports = connection;
 
