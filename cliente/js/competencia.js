@@ -1,5 +1,5 @@
 // Esta es la ip y puerto en que necesitamos que esté el backend disponible
-var server = 'http://localhost:3000'; //process.env.SERVER; // yo : 'http://localhost:8080'  original: 'http://0.0.0.0:8080'
+var server = 'https://peli-vs-peli-wei.herokuapp.com/'; //process.env.SERVER; // yo : 'http://localhost:8080'  original: 'http://0.0.0.0:8080'
 
 
 function CompetenciasController () {

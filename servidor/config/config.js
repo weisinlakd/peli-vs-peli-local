@@ -39,7 +39,7 @@ if (process.env.NODE_ENV === 'dev'){
     host = 'localhost';
     port = 3306;
     user = 'root';
-    password = 'obcc-40b';
+    password = 'asd';
     
 }else {
     host = process.env.MYSQL_URI; //ex mongodb_uri
