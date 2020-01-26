@@ -52,6 +52,6 @@ process.env.HOST = host;
 process.env.PORT_SQL = port;
 process.env.USER = user;
 process.env.PASSWORD = password;
-
+process.env.DATABASE = process.env.DATABASE || "competencias";
 
 

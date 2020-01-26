@@ -34,4 +34,6 @@ app.listen(process.env.PORT, function () {
 console.log(process.env.HOST,
   process.env.PORT_SQL,
   process.env.USER,
-  process.env.PASSWORD)
+  process.env.PASSWORD,
+  process.env.DATABASE
+)
