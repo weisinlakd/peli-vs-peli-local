@@ -31,3 +31,7 @@ app.listen(process.env.PORT, function () {
   console.log( "Escuchando en el puerto " + process.env.PORT );
 });
 
+console.log(process.env.HOST,
+  process.env.PORT_SQL,
+  process.env.USER,
+  process.env.PASSWORD)
