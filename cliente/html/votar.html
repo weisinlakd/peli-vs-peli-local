@@ -14,10 +14,14 @@
 		<!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"> -->
 	</head>
 	<body>
+		<div id="preloder">
+			<div class="loader"></div>
+		</div>
 		<header>
 			<div class="logo">
-				<span class="icono"></span>
-				<span>Peli vs Peli</span>
+				<a href="../index.html">
+					<span class="icono"></span>
+					<span>Peli vs Peli</span></a>
 			</div>
 		</header>
 
@@ -46,5 +50,13 @@
 
 		<script src="../js/competencia.js"></script>
 		<script src="../js/votar.js"></script>
+		<script>
+			/*------------------
+				Preloader
+			--------------------*/
+			$(window).on('load', function () {
+				$(".loader").fadeOut();
+				$("#preloder").delay(400).fadeOut("slow")})
+		</script>
 	</body>
 </html>

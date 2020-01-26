@@ -11,12 +11,17 @@
 		<!-- <link rel="stylesheet" type="text/css" href="../css/bootstrap.css"> -->
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
 		<link rel="stylesheet" type="text/css" href="../css/style-resultados.css">
+		
 	</head>
 	<body>
+		<div id="preloder">
+			<div class="loader"></div>
+		</div>
 		<header>
 			<div class="logo">
-				<span class="icono"></span>
-				<span>Peli vs Peli</span>
+				<a href="../index.html">
+					<span class="icono"></span>
+					<span>Peli vs Peli</span></a>
 			</div>
 		</header>
 
@@ -50,11 +55,25 @@
 			</div>
 		</div>
 		
-		<div class="footer-actions">
-			<a href="index.html">Ver todas las competencias</a>
+		<div class="footer-actions" id="link2">
+			
+			
 		</div>
 
 		<script src="../js/competencia.js"></script>
 		<script src="../js/resultados.js"></script>
+		<script>
+			let id=getQueryParam("id");			
+			let footer = document.getElementById("link2");			
+			footer.innerHTML = `<a href="votar.html?id=${id}">Volver a votar</a> \n <a href="index.html">Ver todas las competencias</a>`
+		</script>
+		<script>
+			/*------------------
+				Preloader
+			--------------------*/
+			$(window).on('load', function () {
+				$(".loader").fadeOut();
+				$("#preloder").delay(400).fadeOut("slow")})
+		</script>
 	</body>
 </html>
