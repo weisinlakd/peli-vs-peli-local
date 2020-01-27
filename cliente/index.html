@@ -12,6 +12,9 @@
         
 	</head>
 	<body>
+		<div id="preloder">
+			<div class="loader"></div>
+		</div>
 		<header>
 			<div class="logo">
                 <a href="index.html">
@@ -19,29 +22,38 @@
 				<span>Peli vs Peli</span></a>
 			</div>
 		</header>
+		<div class="competencias">
+			<div class="competencia">
+				<div class="card color1">
+					<h2><a class="link titulo" href="html/index.html">Ingreso Usuario</a></h2>
 
-		<div class="competenciaPlantilla competencia">
-			<div class="card">
-				<h2><a class="link titulo" href="html/administrar/index.html">Ingresar</a></h2>
-
-				<div class="actions">
-					<a class="link" href="html/index.html">Usuario</a>
-                </div>
+					<div class="actions">
+						<a class="link" href="html/index.html"> </a>
+					</div>
+				</div>
+				
 			</div>
-			<div class="card">
-				<h2><a class="link titulo" href="html/administrar/index.html">Ingresar</a></h2>
+			<div class="competencia">
+				<div class="card color2">
+					<h2><a class="link titulo" href="html/administrar/index.html">Ingreso Administrador</a></h2>
 
-				<div class="actions">
-					<a class="link" href="html/administrar/index.html">Administrador</a>
-                </div>
-                
+					<div class="actions">
+						<a class="link" href="html/administrar/index.html"></a>
+					</div>
+					
+				</div>
 			</div>
 		</div>
-		
-		<div class="competencias"></div>
 
 		<!-- <script src="../js/competencia.js"></script> -->
         <!-- <script src="../js/index.js"></script> -->
-        
+        <script>
+			/*------------------
+				Preloader
+			--------------------*/
+			$(window).on('load', function () {
+				$(".loader").fadeOut();
+				$("#preloder").delay(100).fadeOut("slow")})
+		</script>
 	</body>
 </html>
